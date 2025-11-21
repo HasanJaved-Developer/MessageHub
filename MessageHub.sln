@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36518.9 d17.14
+VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiIntegrationMvc", "ApiIntegrationMvc\ApiIntegrationMvc.csproj", "{B1DFEDBF-C8E5-88FB-D282-4383C5499138}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementApi.Tests.Integration", "UserManagementApi.Tests.Integration\UserManagementApi.Tests.Integration.csproj", "{8EC07DDB-0010-C33F-EC6C-B899CF42229F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagementApi.Tests.Unit", "UserManagementApi.Tests.Unit\UserManagementApi.Tests.Unit.csproj", "{E3C71577-54AA-15C4-8A1A-EBA026911BE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBus.Invalidator", "MessageBus.Invalidator\MessageBus.Invalidator.csproj", "{A91EB94A-5DF6-4DB1-85CB-3421139A70BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{E3C71577-54AA-15C4-8A1A-EBA026911BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3C71577-54AA-15C4-8A1A-EBA026911BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3C71577-54AA-15C4-8A1A-EBA026911BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A91EB94A-5DF6-4DB1-85CB-3421139A70BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A91EB94A-5DF6-4DB1-85CB-3421139A70BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A91EB94A-5DF6-4DB1-85CB-3421139A70BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A91EB94A-5DF6-4DB1-85CB-3421139A70BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
