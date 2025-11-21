@@ -78,7 +78,7 @@ Open RabbitMQ Management Dashboard:
 http://localhost:15672
 
 
-(default credentials: guest / guest)
+(default credentials: rabbit / rabbit)
 
 ---
 
