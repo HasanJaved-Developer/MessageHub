@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using SharedLibrary.Cache;
+using SharedLibrary.MessageBus;
 using UserManagement.Contracts.DTO;
 using UserManagementApi.Contracts.Models;
 using UserManagementApi.Controllers;
@@ -16,8 +17,8 @@ namespace UserManagementApi.Tests.Unit
         private readonly UserPermissionsDto _permToReturn;
 
         public TestableLoginController(ICacheAccessProvider cache, AppDbContext db,
-                                       IOptions<JwtOptions> jwtopts)
-            : base(cache, db, jwtopts)
+                                       IOptions<JwtOptions> jwtopts, IPermissionsEventPublisher publishers)
+            : base(cache, db, jwtopts, publishers)
         {
             _jwtToReturn = "fake-jwt";
             _expToReturn = DateTime.UtcNow.AddHours(1);
