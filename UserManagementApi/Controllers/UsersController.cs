@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SharedLibrary.Cache;
+using SharedLibrary.MessageBus;
+using StackExchange.Redis;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -25,8 +28,9 @@ namespace UserManagementApi.Controllers
         private readonly ICacheAccessProvider _cache;
         private readonly AppDbContext _db;
         private readonly JwtOptions _jwt;
+        private readonly IPermissionsEventPublisher _publisher;
 
-        public UsersController(ICacheAccessProvider cache, AppDbContext db, IOptions<JwtOptions> jwtOptions) => (_cache, _db, _jwt) = (cache, db, jwtOptions.Value);
+        public UsersController(ICacheAccessProvider cache, AppDbContext db, IOptions<JwtOptions> jwtOptions, IPermissionsEventPublisher publisher) => (_cache, _db, _jwt, _publisher) = (cache, db, jwtOptions.Value, publisher);
         
         // --------- NEW: POST /api/users/authenticate ----------
         [HttpPost("authenticate")]
@@ -111,9 +115,19 @@ namespace UserManagementApi.Controllers
             {
                 var affected = await _db.SaveChangesAsync();                
             }
-            
-            long cacheresult = await _cache.InvalidatePermissionsForRoleAsync("Admin");
 
+
+            // Fire-and-forget style, but we still return Task
+            var evt = new RolePermissionsUpdatedEvent
+            {
+                Role = "Admin",
+                OccurredAtUtc = DateTime.UtcNow,
+                Source = "UserManagementApi"
+            };
+            
+            // 2) Publish event to RabbitMQ (after commit)
+            await _publisher.PublishRolePermissionsUpdatedAsync(evt);
+                        
             return Ok(new { Message = $"Permissions updated with operation: {operation.Op}" });
         }
 
