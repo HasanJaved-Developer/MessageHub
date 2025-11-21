@@ -7,6 +7,7 @@ using OpenTelemetry.Trace;
 using Serilog;
 using SharedLibrary;
 using SharedLibrary.Cache;
+using SharedLibrary.MessageBus;
 using SharedLibrary.Middlewares;
 using System.Reflection;
 using System.Text;
@@ -122,6 +123,13 @@ builder.Services.AddOpenTelemetry()
             o.Protocol = OtlpExportProtocol.Grpc;
         }));
 
+// RabbitMQ Bind options
+builder.Services.Configure<RabbitMqOptions>(
+    builder.Configuration.GetSection("RabbitMq"));
+
+// Register RabbitMQ connection + publisher
+builder.Services.AddSingleton<IRabbitMqConnection, RabbitMqConnection>();
+builder.Services.AddSingleton<IPermissionsEventPublisher, PermissionsEventPublisher>();
 
 var app = builder.Build();
 app.UseSerilogRequestLogging(); // structured request logs
