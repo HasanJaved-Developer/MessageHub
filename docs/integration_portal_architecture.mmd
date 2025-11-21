@@ -11,6 +11,14 @@ flowchart TB
     OTEL --> J_COLLECTOR --> J_UI
   end
 
+ %% --- Message Bus (RabbitMQ + Worker) ---
+  subgraph MSG[Message Bus & Cache Invalidation]
+    direction TB
+    RABBIT[(🐇 RabbitMQ<br/>Message Broker)]:::mq
+    INV_WORKER[⚙️ PermissionInvalidationWorker<br/>Cache Invalidator]:::worker
+    RABBIT --> INV_WORKER
+  end
+
   %% --- SDKs ---
   UM_SDK[📦 UserManagement.SDK]:::sdk
   LOG_SDK[📦 CentralizedLogging.SDK]:::sdk
@@ -65,6 +73,12 @@ flowchart TB
   LOG_API -. uses .-> OTEL
   Portal -. uses .-> OTEL
 
+  %% User Management API publishes invalidation events to RabbitMQ
+  UM_API --> RABBIT
+
+  %% Worker invalidates cache entries in DragonflyDB
+  INV_WORKER --> DRAGONFLY
+
   %% --- Styles ---
   classDef client fill:#f0f8ff,stroke:#007acc,stroke-width:2px,color:#000,font-weight:bold;
   classDef sdk fill:#fff5e6,stroke:#ff9900,stroke-width:2px,color:#000;
@@ -76,3 +90,5 @@ flowchart TB
   classDef otel fill:#fffbea,stroke:#b7791f,stroke-width:2px,color:#000;
   classDef infra fill:#f5f5ff,stroke:#6b46c1,stroke-width:2px,color:#000;
   classDef ui fill:#f0fff4,stroke:#2f855a,stroke-width:2px,color:#000;
+  classDef mq fill:#fffaf0,stroke:#dd6b20,stroke-width:2px,color:#000,font-weight:bold;
+  classDef worker fill:#e6fffa,stroke:#319795,stroke-width:2px,color:#000,font-weight:bold;
