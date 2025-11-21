@@ -1,9 +1,9 @@
-name: consistent-authz-stack-dhub
+name: message-hub-stack-dhub
 
 services:
   api:
     # ── Docker Hub image
-    image: docker.io/hasanjaveddeveloper/consistent-authz-api:v1.0.1
+    image: docker.io/hasanjaveddeveloper/message-hub-api:v1.0.1
     container_name: centralized_logging_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
@@ -21,7 +21,7 @@ services:
       - ./CentralizedLoggingApi/logs:/app/logs
 
   userapi:
-    image: docker.io/hasanjaveddeveloper/consistent-authz-userapi:v1.0.1
+    image: docker.io/hasanjaveddeveloper/message-hub-userapi:v1.0.1
     container_name: user_management_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
@@ -39,7 +39,7 @@ services:
       - ./UserManagementApi/logs:/app/logs
 
   web:
-    image: docker.io/hasanjaveddeveloper/consistent-authz-web:v1.0.1
+    image: docker.io/hasanjaveddeveloper/message-hub-web:v1.0.1
     container_name: api_integration_web
     environment:
       - ASPNETCORE_ENVIRONMENT=Production

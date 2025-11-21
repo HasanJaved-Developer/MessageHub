@@ -1,8 +1,8 @@
-name: consistent-authz-stack
+name: message-hub-stack
 
 services:
   api:
-    image: ghcr.io/hasanjaved-developer/consistent-authz/api:v1.0.1
+    image: ghcr.io/hasanjaved-developer/message-hub/api:v1.0.1
     container_name: centralized_logging_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
@@ -21,7 +21,7 @@ services:
       - ./CentralizedLoggingApi/logs:/app/logs
 
   userapi:
-    image: ghcr.io/hasanjaved-developer/consistent-authz/userapi:v1.0.1
+    image: ghcr.io/hasanjaved-developer/message-hub/userapi:v1.0.1
 
     container_name: user_management_api
     environment:
@@ -42,7 +42,7 @@ services:
 
   web:
 
-    image: ghcr.io/hasanjaved-developer/consistent-authz/web:v1.0.1
+    image: ghcr.io/hasanjaved-developer/message-hub/web:v1.0.1
     container_name: api_integration_web
     environment:
       - ASPNETCORE_ENVIRONMENT=Production

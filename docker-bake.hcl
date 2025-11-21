@@ -4,7 +4,7 @@
 
 variable "REGISTRY_GHCR" { default = "ghcr.io" }
 variable "OWNER"         { default = "hasanjaved-developer" }   // overridden by workflow
-variable "REPO_SLUG"     { default = "consistent-authz" }     // your namespace/group
+variable "REPO_SLUG"     { default = "message-hub" }     // your namespace/group
 variable "DOCKERHUB_NAMESPACE" { default = "hasanjaveddeveloper" }                  // optional
 
 group "default" {
@@ -24,7 +24,7 @@ target "userapi" {
 
   platforms = ["linux/amd64", "linux/arm64"]
   labels = {
-    "org.opencontainers.image.source" = "https://github.com/${OWNER}/ConsistentAuthZ"
+    "org.opencontainers.image.source" = "https://github.com/${OWNER}/MessageHub"
     "org.opencontainers.image.title"  = "userapi"
   }
 }
@@ -40,7 +40,7 @@ target "api" {
 
   platforms = ["linux/amd64", "linux/arm64"]
   labels = {
-    "org.opencontainers.image.source" = "https://github.com/${OWNER}/ConsistentAuthZ"
+    "org.opencontainers.image.source" = "https://github.com/${OWNER}/MessageHub"
     "org.opencontainers.image.title"  = "api"
   }
 }
@@ -56,7 +56,7 @@ target "web" {
 
   platforms = ["linux/amd64", "linux/arm64"]
   labels = {
-    "org.opencontainers.image.source" = "https://github.com/${OWNER}/ConsistentAuthZ"
+    "org.opencontainers.image.source" = "https://github.com/${OWNER}/MessageHub"
     "org.opencontainers.image.title"  = "web"
   }
 }

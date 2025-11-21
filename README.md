@@ -1,71 +1,88 @@
-# 🛰️ ConsistentAuthZ — Distributed-ready centralized authorization with Redis and stale-claim-safe live permission updates.
+# 🚀 MessageHub 
 
-[![Build](https://github.com/hasanjaved-developer/ConsistentAuthZ/actions/workflows/dotnet-tests.yml/badge.svg?branch=v1.0.1)](https://github.com/hasanjaved-developer/ConsistentAuthZ/actions/workflows/dotnet-tests.yml)
-[![codecov](https://codecov.io/gh/hasanjaved-developer/ConsistentAuthZ/branch/master/graph/badge.svg)](https://codecov.io/gh/hasanjaved-developer/ConsistentAuthZ)
-[![Docker Compose CI](https://github.com/hasanjaved-developer/ConsistentAuthZ/actions/workflows/docker-compose-ci.yml/badge.svg)](https://github.com/hasanjaved-developer/ConsistentAuthZ/actions/workflows/docker-compose-ci.yml)
+[![Build](https://github.com/hasanjaved-developer/MessageHub/actions/workflows/dotnet-tests.yml/badge.svg?branch=v1.0.1)](https://github.com/hasanjaved-developer/MessageHub/actions/workflows/dotnet-tests.yml)
+[![codecov](https://codecov.io/gh/hasanjaved-developer/MessageHub/branch/master/graph/badge.svg)](https://codecov.io/gh/hasanjaved-developer/MessageHub)
+[![Docker Compose CI](https://github.com/hasanjaved-developer/MessageHub/actions/workflows/docker-compose-ci.yml/badge.svg)](https://github.com/hasanjaved-developer/MessageHub/actions/workflows/docker-compose-ci.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue?logo=github)](LICENSE.txt)
-[![Release](https://img.shields.io/badge/release-v1.0.1-blue)](https://github.com/hasanjaved-developer/ConsistentAuthZ/tags)
+[![Release](https://img.shields.io/badge/release-v1.0.1-blue)](https://github.com/hasanjaved-developer/MessageHub/tags)
 ![Zero Windows Dependencies](https://img.shields.io/badge/Zero%20Windows%20Dependencies-Container%20Ready-blue?logo=linux)
-[![GHCR api](https://img.shields.io/badge/ghcr.io-consistent--authz%2Fapi-blue?logo=github)](https://ghcr.io/hasanjaved-developer/consistent-authz/api)
-[![GHCR userapi](https://img.shields.io/badge/ghcr.io-consistent--authz%2Fuserapi-blue?logo=github)](https://ghcr.io/hasanjaved-developer/consistent-authz/userapi)
-[![GHCR web](https://img.shields.io/badge/ghcr.io-consistent--authz%2Fweb-blue?logo=github)](https://ghcr.io/hasanjaved-developer/consistent-authz/web)
+[![GHCR api](https://img.shields.io/badge/ghcr.io-message--hub%2Fapi-blue?logo=github)](https://ghcr.io/hasanjaved-developer/message-hub/api)
+[![GHCR userapi](https://img.shields.io/badge/ghcr.io-message--hub%2Fuserapi-blue?logo=github)](https://ghcr.io/hasanjaved-developer/message-hub/userapi)
+[![GHCR web](https://img.shields.io/badge/ghcr.io-message--hub%2Fweb-blue?logo=github)](https://ghcr.io/hasanjaved-developer/message-hub/web)
 
 ### 🐳 Docker Hub Images
 
 | Service | Pulls | Size | Version |
 |----------|-------|------|----------|
-| **API** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/consistent-authz-api)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-api) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/consistent-authz-api/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-api/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/consistent-authz-api?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-api/tags) |
-| **User API** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/consistent-authz-userapi)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-userapi) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/consistent-authz-userapi/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-userapi/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/consistent-authz-userapi?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-userapi/tags) |
-| **Web (Portal)** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/consistent-authz-web)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-web) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/consistent-authz-web/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-web/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/consistent-authz-web?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/consistent-authz-web/tags) |
+| **API** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/message-hub-api)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-api) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/message-hub-api/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-api/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/message-hub-api?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-api/tags) |
+| **User API** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/message-hub-userapi)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-userapi) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/message-hub-userapi/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-userapi/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/message-hub-userapi?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-userapi/tags) |
+| **Web (Portal)** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/message-hub-web)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-web) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/message-hub-web/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-web/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/message-hub-web?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-web/tags) |
 
-This project demonstrates **consistent authorization between a Web App and APIs,** backed by **Redis-cached permissions** and **automatic refresh on role change,** without forcing user logout.
+**MessageBus** is a lightweight RabbitMQ-powered message pipeline focused on **event-driven cache invalidation** in .NET applications.
 
-It runs as a **single-node, modular application**, but follows a **distributed-ready design** with clear service boundaries and optional RabbitMQ support for future event-driven scaling.
+It provides a clean pattern for publishing events from APIs after completing database updates, and processing those events asynchronously using independent worker services that connect to Dragonfly/Redis.
 
-**Key Idea:**
-Keep UI and API aligned — centralize authorization to avoid scattered permission checks. 
+This approach keeps APIs fast and responsive while ensuring cache consistency across services.
 
-**Centralized RBAC model:** 
-Categories → Modules → Functions with WebApp/API types.
+The worker’s responsibility is only to remove stale keys. Any pre-warm logic (such as regenerating and repopulating cache values) remains inside the web application and will execute naturally on the next access after invalidation.
 
-**Demo Admin Account:** 
-allan / allan — useful for testing permissions in multiple browsers with shared cache.
+**A single role update can affect hundreds of users — so distributed cache invalidation is essential for consistent authorization.**
 
 ---
 
-## ✨ Features
-| Capability                          | Description                                          |
-| ----------------------------------- | ---------------------------------------------------- |
-| ✅ Centralized permission model      | Roles & permissions stored in DB, not in controllers |
-| ✅ Redis permission cache            | Fast lookup on every request                         |
-| ✅ Automatic invalidation            | Redis cache cleared on role change — no stale access |
-| ✅ UI & API use same source of truth | Eliminates mismatch (link visible but API denies)    |
-| ✅ Graceful UX                       | No forced logout; UI updates on next action          |
-| ✅ Unauthorized demo                 | See incorrect state → fix → observe correct behavior |
-| ✅ Distributed-ready               | Web + API boundaries, optional RabbitMQ              |
-| ✅ Observability friendly            | Designed to show 401/403 traces + refresh flow       |
+## 🔧 Features
+### ✔️ Event Bus Abstraction
 
+A minimal IEventBus interface with a RabbitMQ implementation supporting:
+
+durable exchanges
+
+routing keys
+
+persistent messages
+
+JSON serialization
+
+### ✔️ Cache Invalidation Worker
+
+A background worker that listens to specific events and:
+
+receives an event from RabbitMQ
+
+invalidates related keys in Redis/Dragonfly
+
+(optionally) logs the invalidation action
+
+The worker runs independently and never blocks the API.
+
+### ✔️ Clean Publish → Process Pattern
+
+A standard flow:
+
+API completes database update
+
+API publishes a cache-related event
+
+RabbitMQ routes the event to a queue
+
+Cache worker consumes the event
+
+Worker removes the relevant keys in Redis
 
 ---
 
-## 👀 Demo Scenarios
-| Scenario              | What happens                                         |
-| --------------------- | ---------------------------------------------------- |
-| User lacks permission | UI might show link → API rejects with 403            |
-| Admin grants role     | Redis entry removed → user gets access on next click |
-| Admin revokes role    | Cache cleared → user loses access instantly          |
-| User tries old link   | UI blocks or API returns 403 → redirect to home      |
+## 🐇 RabbitMQ Management Dashboard
+
+Open RabbitMQ Management Dashboard:
+
+http://localhost:15672
 
 
----
-
-## ⭐ Developer Explanation Text
-
-The project begins with UI-only permission to intentionally demonstrate an inconsistent state: the user sees the feature link but the API denies access. After enabling API permission and clearing the Redis cache, both layers align. When permissions are removed again, the UI hides the link and the API blocks the request — all without forcing logout or leaving stale access behind.
+(default credentials: guest / guest)
 
 ---
 
-## 🧩 Architecture Snapshot
+## 🧱 Architecture Snapshot
 
 ![Integration Portal Architecture](docs/integration_portal_architecture.png)  
 <sub>[View Mermaid source](docs/integration_portal_architecture.mmd)</sub>
@@ -74,11 +91,20 @@ The project begins with UI-only permission to intentionally demonstrate an incon
 
 ### 📸 Screenshots
 
-### 🔑 Observability and Permissions
+---
 
-![Api unauthorized](docs/screenshots/api_unauthorized.png)
+### 🔐 Permission Change Trigger (UI Action That Publishes the Event)
 
 ![Permissions](docs/screenshots/permissions.png)
+
+### 📨 RabbitMQ — Permission Invalidation Message Received
+
+![Permissions](docs/screenshots/rabbitmq.png)
+
+## 🧩 Worker Process — Handling PermissionInvalidation Messages
+
+![Cache Invalidation Diagram](docs/cache_invalidation_diagram.png)  
+<sub>[View Mermaid source](docs/cache_invalidation_diagram.mmd)</sub>
 
 ---
 
@@ -86,8 +112,8 @@ The project begins with UI-only permission to intentionally demonstrate an incon
 
 ```bash
 # Clone the repository
-git clone https://github.com/hasanjaved-developer/consistent-authz.git
-cd consistent-authz
+git clone https://github.com/hasanjaved-developer/message-hub.git
+cd message-hub
 
 # Start the observability stack
 docker compose -f docker-compose.yml up -d
