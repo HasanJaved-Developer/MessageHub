@@ -9,6 +9,7 @@
 [![GHCR api](https://img.shields.io/badge/ghcr.io-message--hub%2Fapi-blue?logo=github)](https://ghcr.io/hasanjaved-developer/message-hub/api)
 [![GHCR userapi](https://img.shields.io/badge/ghcr.io-message--hub%2Fuserapi-blue?logo=github)](https://ghcr.io/hasanjaved-developer/message-hub/userapi)
 [![GHCR web](https://img.shields.io/badge/ghcr.io-message--hub%2Fweb-blue?logo=github)](https://ghcr.io/hasanjaved-developer/message-hub/web)
+[![GHCR invalidator](https://img.shields.io/badge/ghcr.io-message--hub%2Finvalidator-blue?logo=github)](https://ghcr.io/hasanjaved-developer/message-hub/invalidator)
 
 ### 🐳 Docker Hub Images
 
@@ -17,6 +18,8 @@
 | **API** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/message-hub-api)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-api) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/message-hub-api/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-api/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/message-hub-api?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-api/tags) |
 | **User API** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/message-hub-userapi)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-userapi) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/message-hub-userapi/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-userapi/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/message-hub-userapi?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-userapi/tags) |
 | **Web (Portal)** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/message-hub-web)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-web) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/message-hub-web/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-web/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/message-hub-web?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-web/tags) |
+| **Invalidator** | [![Pulls](https://img.shields.io/docker/pulls/hasanjaveddeveloper/message-hub-invalidator)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-invalidator) | [![Size](https://img.shields.io/docker/image-size/hasanjaveddeveloper/message-hub-invalidator/v1.0.1)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-invalidator/tags) | [![Version](https://img.shields.io/docker/v/hasanjaveddeveloper/message-hub-invalidator?sort=semver)](https://hub.docker.com/r/hasanjaveddeveloper/message-hub-invalidator/tags) |
+
 
 **MessageBus** is a lightweight RabbitMQ-powered message pipeline focused on **event-driven cache invalidation** in .NET applications.
 
