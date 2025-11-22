@@ -8,7 +8,7 @@ variable "REPO_SLUG"     { default = "message-hub" }     // your namespace/group
 variable "DOCKERHUB_NAMESPACE" { default = "hasanjaveddeveloper" }                  // optional
 
 group "default" {
-  targets = ["userapi", "api", "web"]
+  targets = ["userapi", "api", "web", "invalidator"]
 }
 
 /* ---------------------- userapi (UserManagementApi) ---------------------- */
@@ -58,5 +58,21 @@ target "web" {
   labels = {
     "org.opencontainers.image.source" = "https://github.com/${OWNER}/MessageHub"
     "org.opencontainers.image.title"  = "web"
+  }
+}
+
+/* ---------------------- invalidator (MessageBus.Invalidator) ---------------------- */
+target "invalidator" {
+  context    = "."
+  dockerfile = "./MessageBus.Invalidator/Dockerfile"
+
+  tags = [
+    "${REGISTRY_GHCR}/${OWNER}/${REPO_SLUG}/invalidator:edge"
+  ]
+
+  platforms = ["linux/amd64", "linux/arm64"]
+  labels = {
+    "org.opencontainers.image.source" = "https://github.com/${OWNER}/MessageHub"
+    "org.opencontainers.image.title"  = "invalidator"
   }
 }

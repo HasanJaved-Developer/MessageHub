@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  REPO_SLUG: consistent-authz
+  REPO_SLUG: message-hub
   PLATFORMS: linux/amd64,linux/arm64
   DOCKERHUB_NAMESPACE: "hasanjaveddeveloper"        # optional mirroring
   PUSH_IMAGES: "true"                                # always push in GitHub CI
@@ -92,6 +92,7 @@ jobs:
             user_tags+=( "ghcr.io/${OWNER_LC}/${REPO_SLUG}/userapi:edge" )
             api_tags+=(  "ghcr.io/${OWNER_LC}/${REPO_SLUG}/api:edge" )
             web_tags+=(  "ghcr.io/${OWNER_LC}/${REPO_SLUG}/web:edge" )
+            invalidator_tags+=( "ghcr.io/${OWNER_LC}/${REPO_SLUG}/invalidator:edge" )
           fi
 
           # Master branch -> latest
@@ -99,6 +100,7 @@ jobs:
             user_tags+=( "ghcr.io/${OWNER_LC}/${REPO_SLUG}/userapi:latest" )
             api_tags+=(  "ghcr.io/${OWNER_LC}/${REPO_SLUG}/api:latest" )
             web_tags+=(  "ghcr.io/${OWNER_LC}/${REPO_SLUG}/web:latest" )
+            invalidator_tags+=( "ghcr.io/${OWNER_LC}/${REPO_SLUG}/invalidator:latest" ) 
           fi
 
           # Release tags -> vX.Y.Z and X.Y (optionally also latest if you want)
@@ -110,6 +112,7 @@ jobs:
             user_tags+=( "ghcr.io/${OWNER_LC}/${REPO_SLUG}/userapi:${ver}" )
             api_tags+=(  "ghcr.io/${OWNER_LC}/${REPO_SLUG}/api:${ver}" )
             web_tags+=(  "ghcr.io/${OWNER_LC}/${REPO_SLUG}/web:${ver}" )
+            invalidator_tags+=( "ghcr.io/${OWNER_LC}/${REPO_SLUG}/invalidator:${ver}" ) 
             
           fi
 
@@ -118,15 +121,18 @@ jobs:
             hub_user=( "${user_tags[@]/#ghcr.io\/${OWNER_LC}\/${REPO_SLUG}\/userapi:/docker.io/${HUB_NS}/${REPO_SLUG}-userapi:}" )
             hub_api=(  "${api_tags[@]/#ghcr.io\/${OWNER_LC}\/${REPO_SLUG}\/api:/docker.io/${HUB_NS}/${REPO_SLUG}-api:}" )
             hub_web=(  "${web_tags[@]/#ghcr.io\/${OWNER_LC}\/${REPO_SLUG}\/web:/docker.io/${HUB_NS}/${REPO_SLUG}-web:}" )
+            hub_invalidator=( "${invalidator_tags[@]/#ghcr.io\/${OWNER_LC}\/${REPO_SLUG}\/invalidator:/docker.io/${HUB_NS}/${REPO_SLUG}-invalidator:}" )
             user_tags+=( "${hub_user[@]}" )
             api_tags+=(  "${hub_api[@]}" )
             web_tags+=(  "${hub_web[@]}" )
+            invalidator_tags+=( "${hub_invalidator[@]}" )
           fi
 
           {
             echo "user_set<<EOF"; add_lines userapi "${user_tags[@]}"; echo "EOF"
             echo "api_set<<EOF";  add_lines api     "${api_tags[@]}";  echo "EOF"
             echo "web_set<<EOF";  add_lines web     "${web_tags[@]}";  echo "EOF"
+            echo "invalidator_set<<EOF"; add_lines invalidator  "${invalidator_tags[@]}"; echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
       # ---------- GHCR login ----------
@@ -170,6 +176,7 @@ jobs:
           while IFS= read -r l; do COMMON_SET+=( "--set" "$l" ); done <<< "${{ steps.tags.outputs.user_set }}"
           while IFS= read -r l; do COMMON_SET+=( "--set" "$l" ); done <<< "${{ steps.tags.outputs.api_set }}"
           while IFS= read -r l; do COMMON_SET+=( "--set" "$l" ); done <<< "${{ steps.tags.outputs.web_set }}"
+          while IFS= read -r l; do COMMON_SET+=( "--set" "$l" ); done <<< "${{ steps.tags.outputs.invalidator_set }}"
 
           if [ "$DO_PUSH" = "true" ]; then
             docker buildx bake -f ./docker-bake.hcl "${COMMON_SET[@]}" --push
@@ -190,3 +197,4 @@ jobs:
             ${{ steps.tags.outputs.user_set }}
             ${{ steps.tags.outputs.api_set }}
             ${{ steps.tags.outputs.web_set }}
+            ${{ steps.tags.outputs.invalidator_set }}
